@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "prettier/react",
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
+  ],
+  "plugins": ["react", "react-hooks", "prettier", "emotion", "jest"],
+  "rules": {
+    "react-hooks/rules-of-hooks": ["error"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
