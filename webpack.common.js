@@ -11,7 +11,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Grail',
+      title: 'Ara',
       favicon: 'public/favicon.ico',
       template: 'public/index.html',
     }),
