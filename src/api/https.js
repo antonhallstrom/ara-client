@@ -4,12 +4,22 @@ import { bind } from 'redux-effects'
 const EFFECT_FETCH_API = 'EFFECT_FETCH_API'
 
 function request(url, config) {
+  const params = Object.assign(
+    {},
+    { headers: { 'Content-Type': 'application/json' } },
+    config.params
+  )
+
+  if (params.body) {
+    params.body = JSON.stringify(params.body)
+  }
+
   return bind(
     {
       type: EFFECT_FETCH_API,
       payload: {
         url,
-        params: {},
+        params,
       },
     },
     config.success,

@@ -1,9 +1,9 @@
 import { combineReducers, applyMiddleware, createStore, compose } from 'redux'
 
-/* Reducers */
-import { reducer as booksReducer } from './reducers/books'
+// Reducers
+import { reducer as postsReducer } from './reducers/posts'
 
-/* Middleware */
+// Middleware
 import fetchApi from './middleware/fetch-api'
 import multi from 'redux-multi'
 import effects from 'redux-effects'
@@ -13,7 +13,7 @@ import { routerMiddleware, connectRouter } from 'connected-react-router'
 const rootReducer = history => {
   return combineReducers({
     router: connectRouter(history),
-    books: booksReducer,
+    posts: postsReducer,
   })
 }
 
