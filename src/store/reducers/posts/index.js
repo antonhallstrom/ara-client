@@ -12,7 +12,19 @@ export function reducer(state = [], action) {
     }
 
     case types.REMOVE: {
-      return R.remove(R.findIndex(R.propEq('_id', action.payload)), 1, state)
+      return R.reject(R.propEq('_id', action.payload))(state)
+    }
+
+    case types.UPDATE: {
+      const index = R.findIndex(R.propEq('_id', action.payload.postId))(state)
+      return R.update(
+        index,
+        R.merge(
+          action.payload.properties,
+          R.find(R.propEq('_id', action.payload.postId))(state)
+        ),
+        state
+      )
     }
 
     default: {

@@ -5,7 +5,14 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as api from './api'
-import { save, remove, insert, getPosts } from './store/reducers/posts'
+import {
+  save,
+  update,
+  remove,
+  insert,
+  getPosts,
+  getDrafts,
+} from './store/reducers/posts'
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +35,17 @@ class App extends React.Component {
           ),
           this.props.posts
         )}
+        {R.map(
+          post => (
+            <div key={post._id}>
+              <li>{post._id}</li>
+              <button onClick={() => this.props.onPublishDraft(post._id)}>
+                Publish draft
+              </button>
+            </div>
+          ),
+          this.props.drafts
+        )}
       </React.Fragment>
     )
   }
@@ -36,18 +54,31 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     posts: getPosts(state),
+    drafts: getDrafts(state),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
+      onPublishDraft: postId =>
+        api.publishDraft(
+          postId,
+          { shouldPublish: true },
+          {
+            success: () => update(postId, { published: new Date() }),
+          }
+        ),
       onDeletePost: postId =>
         api.deletePost({ postId }, { success: () => remove(postId) }),
       onFetchPost: () => api.fetchPosts({ success: res => save(res.value) }),
       onCreatePost: () =>
         api.createPost(
-          { title: 'Ara Client!', content: 'What a wonderful world.' },
+          {
+            title: 'Ara Client!',
+            content: 'What a wonderful world.',
+            shouldPublish: false,
+          },
           { success: res => insert(res.value) }
         ),
     },
@@ -57,9 +88,11 @@ function mapDispatchToProps(dispatch) {
 
 App.propTypes = {
   posts: PropTypes.array,
+  drafts: PropTypes.array,
   onFetchPost: PropTypes.func.isRequired,
   onCreatePost: PropTypes.func.isRequired,
   onDeletePost: PropTypes.func.isRequired,
+  onPublishDraft: PropTypes.func.isRequired,
 }
 
 export default withRouter(
