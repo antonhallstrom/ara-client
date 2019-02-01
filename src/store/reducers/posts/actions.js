@@ -1,7 +1,7 @@
 import * as types from './types'
 
 /**
- * Saves a collection of posts
+ * Saves a list of posts
  * @param {Array.<Object>} posts - List containing published and drafted posts
  */
 export function save(posts) {
@@ -12,7 +12,7 @@ export function save(posts) {
 }
 
 /**
- * Inserts a post into the posts collection
+ * Inserts a post into the post list
  * @param {Object} post - Post
  */
 export function insert(post) {

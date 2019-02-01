@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as api from './api'
+import { setItem } from 'redux-effects-localstorage'
+
 import {
   save,
   update,
@@ -14,6 +16,8 @@ import {
   getDrafts,
 } from './store/reducers/posts'
 
+import * as session from './store/reducers/session'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -22,6 +26,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <button onClick={this.props.onFetchAccessToken}>
+          Fetch access token
+        </button>
         <button onClick={this.props.onFetchPost}>Fetch posts</button>
         <button onClick={this.props.onCreatePost}>Post</button>
         {R.map(
@@ -61,6 +68,13 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
+      onFetchAccessToken: () =>
+        api.fetchAccessToken({
+          success: res => [
+            setItem('access_token', res.value),
+            session.save(res.value),
+          ],
+        }),
       onPublishDraft: postId =>
         api.publishDraft(
           postId,
@@ -90,6 +104,7 @@ App.propTypes = {
   posts: PropTypes.array,
   drafts: PropTypes.array,
   onFetchPost: PropTypes.func.isRequired,
+  onFetchAccessToken: PropTypes.func.isRequired,
   onCreatePost: PropTypes.func.isRequired,
   onDeletePost: PropTypes.func.isRequired,
   onPublishDraft: PropTypes.func.isRequired,

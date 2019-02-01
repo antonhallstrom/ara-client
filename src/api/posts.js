@@ -6,7 +6,7 @@ import http from './https'
  * @param {FetchConfig} config
  */
 export function fetchPosts(config) {
-  return http.get('http://localhost:5000/api/v1/posts', config)
+  return http.get('/api/v1/posts', config)
 }
 
 /**
@@ -25,10 +25,7 @@ export function createPost(post, config) {
     },
   }
 
-  return http.post(
-    'http://localhost:5000/api/v1/posts',
-    R.merge({ params }, config)
-  )
+  return http.post('/api/v1/posts', R.merge({ params }, config))
 }
 
 /**
@@ -43,10 +40,7 @@ export function deletePost(post, config) {
     },
   }
 
-  return http.delete(
-    `http://localhost:5000/api/v1/posts`,
-    R.merge({ params }, config)
-  )
+  return http.delete(`/api/v1/posts`, R.merge({ params }, config))
 }
 
 export function publishDraft(postId, properties, config) {
@@ -57,8 +51,5 @@ export function publishDraft(postId, properties, config) {
     },
   }
 
-  return http.put(
-    `http://localhost:5000/api/v1/posts`,
-    R.merge({ params }, config)
-  )
+  return http.put(`/api/v1/posts`, R.merge({ params }, config))
 }
