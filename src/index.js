@@ -9,7 +9,7 @@ const theme = {
   color: 'darkblue',
 }
 
-const store = configureStore(history)
+const store = configureStore(history, {})
 
 render(
   <Provider store={store}>

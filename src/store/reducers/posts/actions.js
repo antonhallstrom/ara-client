@@ -47,3 +47,10 @@ export function update(postId, properties) {
     },
   }
 }
+
+export function init(post) {
+  return {
+    type: types.INIT_PERSISTED_POSTS_STATE,
+    payload: post,
+  }
+}

@@ -3,6 +3,10 @@ import * as R from 'ramda'
 
 export function reducer(state = [], action) {
   switch (action.type) {
+    case types.INIT_PERSISTED_POSTS_STATE: {
+      return R.concat(state, action.payload)
+    }
+
     case types.SAVE: {
       return R.concat(state, action.payload)
     }

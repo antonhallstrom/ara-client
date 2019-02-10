@@ -8,11 +8,13 @@ import { reducer as sessionReducer } from './reducers/session'
 import thunk from 'redux-thunk'
 import localStorage from 'redux-effects-localstorage'
 import { fetchApi } from './middleware/fetch-api'
+import { persistanceEnhancer } from './middleware/persistence'
 import multi from 'redux-multi'
 import effects from 'redux-effects'
 import fetch from 'redux-effects-fetch'
 import { routerMiddleware, connectRouter } from 'connected-react-router'
 import * as session from './reducers/session'
+import * as posts from './reducers/posts'
 
 const rootReducer = history => {
   return combineReducers({
@@ -42,6 +44,10 @@ export default function configureStore(history, preloadedState) {
         fetch,
         localStorage(window.localStorage)
       )
+      // persistanceEnhancer([
+      //   { key: 'session', mapper: { getter: session.init } },
+      //   { key: 'posts', mapper: { getter: posts.init } },
+      // ])
     )
   )
 

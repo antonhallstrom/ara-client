@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as api from './api'
-import { setItem } from 'redux-effects-localstorage'
+import { setItem, STORAGE_TYPE } from 'redux-effects-localstorage'
+import { Route } from 'react-router-dom'
+import Login from './views/login'
 
 import {
   save,
@@ -26,6 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Route path="/admin" component={Login} />
         <button onClick={this.props.onFetchAccessToken}>
           Fetch access token
         </button>
@@ -71,7 +74,7 @@ function mapDispatchToProps(dispatch) {
       onFetchAccessToken: () =>
         api.fetchAccessToken({
           success: res => [
-            setItem('access_token', res.value),
+            setItem('access_token', res.value, STORAGE_TYPE.session),
             session.save(res.value),
           ],
         }),
