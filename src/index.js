@@ -3,7 +3,11 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'emotion-theming'
 import configureStore from './store'
-import Router from './router'
+import App from './app'
+
+import { ConnectedRouter } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
+const history = createBrowserHistory()
 
 const theme = {
   color: 'darkblue',
@@ -14,7 +18,9 @@ const store = configureStore(history, {})
 render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <Router />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </ThemeProvider>
   </Provider>,
   document.getElementById('app')
@@ -22,7 +28,7 @@ render(
 
 if (module.hot) {
   // Reload components
-  module.hot.accept('./router', () => {
+  module.hot.accept('./app', () => {
     render()
   })
 }

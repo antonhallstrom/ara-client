@@ -1,1 +1,3 @@
-export { default as Login } from './Login'
+export * from './blog'
+export * from './home'
+export * from './login'
