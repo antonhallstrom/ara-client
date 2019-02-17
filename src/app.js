@@ -11,6 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <views.TopBar />
         <Route exact path="/" component={views.Home} />
         <Route path="/admin" component={views.Login} />
         <Route path="/blog" component={views.Blog} />
