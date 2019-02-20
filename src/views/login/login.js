@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import * as Layout from '../../components/layouts'
 
 export function Login(props) {
   return (
-    <div>
+    <Layout.Default>
       <input placeholder="Username" />
       <input placeholder="Password" />
       <button
@@ -19,7 +20,7 @@ export function Login(props) {
       </button>
       <Link to="/blog">Blog page</Link>
       <button onClick={props.onFetchAdminStuff}>admin stuff</button>
-    </div>
+    </Layout.Default>
   )
 }
 

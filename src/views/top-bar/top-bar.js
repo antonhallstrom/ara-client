@@ -7,14 +7,15 @@ import { NavLink } from '../../components/composites'
 const PAGES = [
   { key: 0, path: '/admin', label: 'Admin' },
   { key: 1, path: '/blog', label: 'Blog' },
-  { key: 2, path: '/', label: 'Home' },
+  { key: 2, path: '/biography', label: 'Biography' },
+  { key: 3, path: '/', label: 'Home' },
 ]
 
 export function TopBar() {
   return (
     <Bar>
       <Space y="1" x="0">
-        <Flex justify="flex-end">
+        <Flex justify="center">
           {R.map(
             data => (
               <Space all="1" key={data.key}>

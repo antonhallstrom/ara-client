@@ -47,7 +47,7 @@ export const theme = {
     primary: {
       default: '#37474f',
       dark: '#102027',
-      light: '#62727b',
+      light: '#757575',
     },
     secondary: {
       default: '#f9f9f9',
@@ -81,7 +81,7 @@ export const theme = {
     },
   },
   shadows: [
-    '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12)',
+    '0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16)',
     '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
     '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
@@ -184,5 +184,29 @@ export const globalStyles = css`
 
   a {
     text-decoration: none;
+  }
+
+  p {
+    color: ${theme.colors.primary.light};
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    line-height: 1.5;
+  }
+
+  q {
+    quotes: '“' '”' '‘' '’';
+  }
+  q:before {
+    content: open-quote;
+  }
+  q:after {
+    content: close-quote;
   }
 `

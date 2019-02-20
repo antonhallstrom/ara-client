@@ -2,10 +2,11 @@ import * as R from 'ramda'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import * as Layout from '../../components/layouts'
 
 export function Blog(props) {
   return (
-    <React.Fragment>
+    <Layout.Default>
       <Link to="/">Home page</Link>
       <button onClick={props.onFetchPost}>Fetch posts</button>
       <button onClick={props.onCreatePost}>Post</button>
@@ -29,7 +30,7 @@ export function Blog(props) {
         ),
         props.drafts
       )}
-    </React.Fragment>
+    </Layout.Default>
   )
 }
 
