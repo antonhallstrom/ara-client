@@ -6,4 +6,5 @@ export const Flex = styled.div(props => ({
   flexDirection: props.column ? 'column' : 'row',
   justifyContent: props.justify,
   flexWrap: props.wrap ? 'wrap' : 'nowrap',
+  width: props.wide ? '100%' : 'auto',
 }))

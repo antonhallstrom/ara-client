@@ -108,6 +108,20 @@ export const theme = {
     64,
     72,
   ]),
+  sizes: R.map(pxToRems(baseFontSize), [
+    1,
+    2,
+    4,
+    8,
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    64,
+    72,
+  ]),
   fonts: {
     primary: 'Roboto, sans-serif',
     secondary: 'Open Sans, sans-serif',
@@ -166,7 +180,7 @@ export const globalStyles = css`
 
   h5 {
     font-family: ${theme.fonts.primary};
-    font-weight: 400;
+    font-weight: 500;
     font-size: ${theme.fonts.sizes[5]};
   }
 
@@ -190,6 +204,11 @@ export const globalStyles = css`
     color: ${theme.colors.primary.light};
   }
 
+  li {
+    font-family: ${theme.fonts.secondary};
+    font-size: ${theme.fonts.sizes[4]};
+  }
+
   h1,
   h2,
   h3,
@@ -208,5 +227,14 @@ export const globalStyles = css`
   }
   q:after {
     content: close-quote;
+  }
+
+  small {
+    font-size: ${theme.fonts.sizes[3]};
+  }
+
+  b {
+    font-weight: 600;
+    color: ${theme.colors.primary.dark};
   }
 `
