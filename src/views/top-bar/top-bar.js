@@ -9,6 +9,7 @@ const PAGES = [
   { key: 1, path: '/blog', label: 'Blog' },
   { key: 2, path: '/biography', label: 'Biography' },
   { key: 3, path: '/', label: 'Home' },
+  { key: 4, path: '/portfolio', label: 'Portfolio' },
 ]
 
 function Component() {

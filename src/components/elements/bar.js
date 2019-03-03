@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
 
 export const Wrapper = styled.div(props => ({
-  boxShadow: props.theme.shadows[0],
+  // boxShadow: props.theme.shadows[0],
   position: 'sticky',
   top: 0,
   backgroundColor: props.theme.colors.white,
