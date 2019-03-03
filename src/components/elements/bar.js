@@ -14,22 +14,28 @@ export const Wrapper = styled.div(props => ({
 
 export function Bar(props) {
   const [isVisible, showBar] = useState(true)
+  const [prevYOffset, setPrevYOffset] = useState(window.pageYOffset)
   const wrapper = useRef(null)
 
   useEffect(
     () => {
       return (window.onscroll = () => {
         if (
-          window.pageYOffset >
-          wrapper.current.getBoundingClientRect().height + 20
+          wrapper.current.getBoundingClientRect().height + 20 >
+          window.pageYOffset
         ) {
-          return showBar(false)
-        } else {
+          setPrevYOffset(window.pageYOffset)
           return showBar(true)
+        } else if (prevYOffset > window.pageYOffset) {
+          setPrevYOffset(window.pageYOffset)
+          return showBar(true)
+        } else {
+          setPrevYOffset(window.pageYOffset)
+          return showBar(false)
         }
       })
     },
-    [isVisible, window.onscroll]
+    [isVisible, window.onscroll, prevYOffset]
   )
 
   return (
