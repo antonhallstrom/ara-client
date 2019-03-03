@@ -6,7 +6,7 @@ import { ThemeProvider } from 'emotion-theming'
 import { theme, globalStyles } from './theme'
 import configureStore from './store'
 import App from './app'
-
+import { ScrollTop } from './components/elements'
 import { ConnectedRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 const history = createBrowserHistory()
@@ -18,7 +18,9 @@ render(
     <Global styles={globalStyles} />
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
-        <App />
+        <ScrollTop>
+          <App />
+        </ScrollTop>
       </ConnectedRouter>
     </ThemeProvider>
   </Provider>,
