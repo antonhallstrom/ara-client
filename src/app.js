@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { withTheme } from 'emotion-theming'
 import { Route, Switch } from 'react-router-dom'
 import * as views from './views'
 
@@ -10,7 +11,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <views.TopBar />
         <Switch>
           <Route exact path="/" component={views.Home} />
@@ -19,9 +20,9 @@ class App extends React.Component {
           <Route path="/biography" component={views.Biography} />
           <Route component={views.NotFound} />
         </Switch>
-      </React.Fragment>
+      </div>
     )
   }
 }
 
-export default withRouter(App)
+export default withRouter(withTheme(App))

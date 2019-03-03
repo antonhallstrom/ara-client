@@ -11,7 +11,7 @@ const PAGES = [
   { key: 3, path: '/', label: 'Home' },
 ]
 
-export function TopBar() {
+function Component() {
   return (
     <Bar>
       <Space y="1" x="0">
@@ -29,3 +29,5 @@ export function TopBar() {
     </Bar>
   )
 }
+
+export const TopBar = Component
