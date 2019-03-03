@@ -19,7 +19,7 @@
     "emotion-theming": "^10.0.5",
     "history": "^4.7.2",
     "hoist-non-react-statics": "^3.2.1",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",

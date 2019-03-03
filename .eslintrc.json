@@ -1,14 +1,15 @@
 {
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "prettier",
     "prettier/react",
-    "plugin:react/recommended",
     "plugin:jest/recommended"
   ],
   "plugins": ["react", "react-hooks", "prettier", "emotion", "jest"],
   "rules": {
-    "react-hooks/rules-of-hooks": ["error"]
+    "react-hooks/rules-of-hooks": ["error"],
+    "react/prop-types": "error"
   },
   "parserOptions": {
     "ecmaVersion": 6,
