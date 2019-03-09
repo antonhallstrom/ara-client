@@ -26,6 +26,7 @@
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-showdown": "^1.6.0",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-effects": "^0.4.3",
@@ -33,6 +34,7 @@
     "redux-effects-localstorage": "^0.2.2",
     "redux-multi": "^0.1.12",
     "redux-thunk": "^2.3.0",
+    "showdown": "^1.9.0",
     "xstate": "^4.2.3"
   },
   "devDependencies": {

@@ -1,6 +1,9 @@
+import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
 import * as R from 'ramda'
 import { css } from '@emotion/core'
 import emotionReset from 'emotion-reset'
+import { ThemeProvider } from 'emotion-theming'
 
 const baseFontSize = 16
 const pxToRems = R.curry((base, px) => px / base + 'rem')
@@ -152,6 +155,10 @@ export const globalStyles = css`
 
   html {
     font-size: ${baseFontSize}px;
+
+    @media screen and (${theme.breakpoints.xs}) {
+      font-size: ${baseFontSize - 2}px;
+    }
   }
 
   h1 {
@@ -188,6 +195,7 @@ export const globalStyles = css`
     font-family: ${theme.fonts.primary};
     font-weight: 500;
     font-size: ${theme.fonts.sizes[4]};
+    color: ${theme.colors.primary.light};
   }
 
   p,
@@ -201,6 +209,12 @@ export const globalStyles = css`
   }
 
   p {
+    color: ${theme.colors.primary.light};
+  }
+
+  small {
+    font-family: ${theme.fonts.secondary};
+    font-size: ${theme.fonts.sizes[3]};
     color: ${theme.colors.primary.light};
   }
 
@@ -238,3 +252,90 @@ export const globalStyles = css`
     color: ${theme.colors.primary.dark};
   }
 `
+
+const breakpoints = {
+  xs: 600,
+  s: 600,
+  m: 768,
+  l: 992,
+  xl: 1200,
+}
+
+function throttled(delay, fn) {
+  let lastCall = 0
+  return function(...args) {
+    const now = new Date().getTime()
+    if (now - lastCall < delay) {
+      return
+    }
+    lastCall = now
+    return fn(...args)
+  }
+}
+
+export function ResponsiveThemeProvider(props) {
+  const [clampMax, setClampMax] = useState(null)
+
+  useEffect(
+    () => {
+      window.addEventListener(
+        'resize',
+        throttled(1000, () => {
+          if (
+            window.innerWidth > breakpoints.xs &&
+            window.innerWidth < breakpoints.m
+          ) {
+            return setClampMax(40)
+          }
+
+          if (
+            window.innerWidth > breakpoints.m &&
+            window.innerWidth < breakpoints.l
+          ) {
+            return setClampMax(68)
+          }
+
+          if (window.innerWidth > breakpoints.l) {
+            return setClampMax(138)
+          }
+        })
+      )
+    },
+    [window.resize, window.innerWidth]
+  )
+
+  useEffect(() => {
+    if (
+      window.innerWidth > breakpoints.xs &&
+      window.innerWidth < breakpoints.m
+    ) {
+      return setClampMax(40)
+    }
+
+    if (
+      window.innerWidth > breakpoints.m &&
+      window.innerWidth < breakpoints.l
+    ) {
+      return setClampMax(68)
+    }
+
+    if (window.innerWidth > breakpoints.l) {
+      return setClampMax(138)
+    }
+  }, [])
+
+  function configureTheme(theme) {
+    return R.assoc('clampMax', clampMax, theme)
+  }
+
+  return (
+    <ThemeProvider theme={configureTheme(props.theme)}>
+      {props.children}
+    </ThemeProvider>
+  )
+}
+
+ResponsiveThemeProvider.propTypes = {
+  theme: PropTypes.object,
+  children: PropTypes.node,
+}

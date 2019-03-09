@@ -3,12 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from '@emotion/styled'
 
-import { Flex, Space } from '../elements'
-
-const Constraint = styled.div`
-  max-width: ${props => props.max}px;
-  min-width: ${props => props.min}px;
-`
+import { Flex, Space, Constraint } from '../elements'
 
 const Circle = styled.div`
   border-radius: 50%;
