@@ -282,8 +282,8 @@ export function ResponsiveThemeProvider(props) {
         'resize',
         throttled(1000, () => {
           if (
-            window.innerWidth > breakpoints.xs &&
-            window.innerWidth < breakpoints.m
+            window.innerWidth < breakpoints.xs &&
+            !(window.innerWidth > breakpoints.m)
           ) {
             return setClampMax(40)
           }
@@ -306,8 +306,8 @@ export function ResponsiveThemeProvider(props) {
 
   useEffect(() => {
     if (
-      window.innerWidth > breakpoints.xs &&
-      window.innerWidth < breakpoints.m
+      window.innerWidth < breakpoints.xs &&
+      !(window.innerWidth > breakpoints.m)
     ) {
       return setClampMax(40)
     }

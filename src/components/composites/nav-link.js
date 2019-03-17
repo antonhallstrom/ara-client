@@ -1,26 +1,27 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import * as R from 'ramda'
 import styled from '@emotion/styled'
-import { withRouter, matchPath } from 'react-router'
+import { withRouter } from 'react-router'
 import { Link as RouterLink } from 'react-router-dom'
 
 const Link = styled.a(props => ({
-  color: props.active
-    ? props.theme.colors.purple.light
-    : props.theme.colors.secondary.dark,
+  color:
+    props.active === 'true'
+      ? props.theme.colors.purple.light
+      : props.theme.colors.secondary.dark,
   textTransform: 'uppercase',
   cursor: 'pointer',
 }))
 
 function Component(props) {
-  const isActive = matchPath(props.location.pathname, {
-    path: props.to,
-    exact: true,
-    strict: true,
-  })
+  const isActive =
+    R.equals(props.to, props.location.pathname) ||
+    (R.propOr(false, 'subPaths', props) &&
+      R.includes(R.join('', props.subPaths), props.location.pathname))
 
   return (
-    <Link to={props.to} as={RouterLink} active={isActive}>
+    <Link to={props.to} as={RouterLink} active={isActive.toString()}>
       {props.children}
     </Link>
   )
@@ -28,6 +29,7 @@ function Component(props) {
 
 Component.propTypes = {
   to: PropTypes.string,
+  subPaths: PropTypes.array,
   location: PropTypes.object,
   children: PropTypes.node,
 }

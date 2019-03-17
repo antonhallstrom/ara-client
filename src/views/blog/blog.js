@@ -1,46 +1,15 @@
 import * as R from 'ramda'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import * as Layout from '../../components/layouts'
-import {
-  Constraint,
-  Flex,
-  Space,
-  Title,
-  Subtitle,
-} from '../../components/elements'
-import { Markdown } from 'react-showdown'
+import { Constraint, Flex } from '../../components/elements'
 
 import { BlogPostCard } from '../../components/composites'
-
-const md = `
-Showdown is a Javascript Markdown to HTML converter, based on the original works by John Gruber. It can be used client side (in the browser) or server side (with Node or io). 
-
-
-# Installation
-
-## Download tarball
-
-You can download the latest release tarball directly from [releases][releases]
-
-## Bower
-
-    bower install showdown
-
-## npm (server-side)
-
-    npm install showdown
-
-## CDN
-
-You can also use one of several CDNs available: 
-`
 
 const data = [
   {
     id: 1,
-    title: 'Traded my brush for a keyboard',
+    title: 'Traded My Brush For A Keyboard',
     category: 'Life',
     subtitle: 'How a colossal mind shift will get you rekindled',
     published: 'Feb 18',
@@ -54,6 +23,13 @@ const data = [
     them!`,
     published: 'Feb 18',
   },
+  {
+    id: 3,
+    title: 'Everything You Wanted To Know About package-lock.json',
+    category: 'Programming',
+    subtitle: `But Were Too Afraid To Ask`,
+    published: 'Feb 18',
+  },
 ]
 
 export function Blog(props) {
@@ -65,6 +41,7 @@ export function Blog(props) {
             blogPost => (
               <BlogPostCard
                 key={blogPost.id}
+                postId={blogPost.id}
                 title={blogPost.title}
                 subtitle={blogPost.subtitle}
                 category={blogPost.category}
@@ -73,29 +50,6 @@ export function Blog(props) {
             ),
             data
           )}
-          {/* <Markdown markup={md} /> */}
-          {/* <button onClick={props.onFetchPost}>Fetch posts</button>
-      <button onClick={props.onCreatePost}>Post</button>
-      {R.map(
-        post => (
-          <div key={post._id}>
-            <li>{post._id}</li>
-            <button onClick={() => props.onDeletePost(post._id)}>Delete</button>
-          </div>
-        ),
-        props.posts
-      )}
-      {R.map(
-        post => (
-          <div key={post._id}>
-            <li>{post._id}</li>
-            <button onClick={() => props.onPublishDraft(post._id)}>
-              Publish draft
-            </button>
-          </div>
-        ),
-        props.drafts
-      )} */}
         </Constraint>
       </Flex>
     </Layout.Blog>

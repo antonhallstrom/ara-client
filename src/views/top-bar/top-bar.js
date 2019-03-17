@@ -5,8 +5,7 @@ import { Bar, Space, Flex } from '../../components/elements'
 import { NavLink } from '../../components/composites'
 
 const PAGES = [
-  { key: 0, path: '/admin', label: 'Admin' },
-  { key: 1, path: '/blog', label: 'Blog' },
+  { key: 1, path: '/blog', label: 'Blog', subPaths: ['post'] },
   { key: 2, path: '/biography', label: 'Biography' },
   { key: 3, path: '/', label: 'Home' },
   { key: 4, path: '/portfolio', label: 'Portfolio' },
@@ -20,7 +19,9 @@ function Component() {
           {R.map(
             data => (
               <Space all="1" key={data.key}>
-                <NavLink to={data.path}>{data.label}</NavLink>
+                <NavLink to={data.path} subPaths={data.subPaths}>
+                  {data.label}
+                </NavLink>
               </Space>
             ),
             PAGES
