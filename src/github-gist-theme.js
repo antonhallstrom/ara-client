@@ -1,15 +1,8 @@
-import React, { useState } from 'react'
-import showdown from 'showdown'
-import showdownHighlight from 'showdown-highlight'
-import * as Layout from '../../components/layouts'
-import { Constraint, Flex } from '../../components/elements'
-
 /**
  * GitHub Gist Theme
  * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
  */
 
-import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
 export const githubGistTheme = css`
@@ -19,7 +12,6 @@ export const githubGistTheme = css`
     padding: 0.5em;
     color: #abb2bf;
     background: #282c34;
-    font-family: monospace;
   }
 
   .hljs-comment,
@@ -91,37 +83,3 @@ export const githubGistTheme = css`
     text-decoration: underline;
   }
 `
-
-const HtmlContent = styled.div`
-  ${githubGistTheme}
-`
-
-function Markdown(props) {
-  const converter = new showdown.Converter({
-    ghCodeBlocks: true,
-    extensions: [showdownHighlight],
-  })
-  showdown.setFlavor('github')
-  const md = converter.makeHtml(props.md)
-
-  return <HtmlContent dangerouslySetInnerHTML={{ __html: md }} />
-}
-
-export function Post(props) {
-  const [markdown, setMarkdown] = useState('')
-
-  function handleChange(event) {
-    setMarkdown(event.target.value)
-  }
-
-  return (
-    <Layout.Default>
-      <Flex column align="center">
-        <Constraint max="600">
-          <textarea onChange={handleChange} value={markdown} />
-          <Markdown md={markdown} />
-        </Constraint>
-      </Flex>
-    </Layout.Default>
-  )
-}

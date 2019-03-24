@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import * as R from 'ramda'
 import { css } from '@emotion/core'
 import emotionReset from 'emotion-reset'
+import { twilightTheme } from './primsjs-theme'
+import { githubGistTheme } from './github-gist-theme'
 import { ThemeProvider } from 'emotion-theming'
 
 const baseFontSize = 16
@@ -139,6 +141,7 @@ export const theme = {
       20,
       22,
       24,
+      28,
     ]),
   },
   radiuses: R.map(pxToRems(baseFontSize), [16, 8, 4, 2]),
@@ -164,13 +167,14 @@ export const globalStyles = css`
   h1 {
     font-family: ${theme.fonts.primary};
     font-weight: 300;
-    font-size: ${theme.fonts.sizes[9]};
+    font-size: ${theme.fonts.sizes[10]};
   }
 
   h2 {
     font-family: ${theme.fonts.primary};
     font-weight: 300;
-    font-size: ${theme.fonts.sizes[8]};
+    font-size: ${theme.fonts.sizes[7]};
+    color: ${theme.colors.primary.light};
   }
 
   h3 {
@@ -219,6 +223,7 @@ export const globalStyles = css`
   }
 
   li {
+    list-style-type: disc;
     font-family: ${theme.fonts.secondary};
     font-size: ${theme.fonts.sizes[4]};
   }
