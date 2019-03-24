@@ -5,6 +5,11 @@ import { Bar, Space, Flex } from '../../components/elements'
 import { NavLink } from '../../components/composites'
 
 const PAGES = [
+  {
+    key: 0,
+    path: '/editor',
+    label: 'Post editor',
+  },
   { key: 1, path: '/blog', label: 'Blog', subPaths: ['post'] },
   { key: 2, path: '/biography', label: 'Biography' },
   { key: 3, path: '/', label: 'Home' },

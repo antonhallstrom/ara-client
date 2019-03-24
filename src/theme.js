@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react'
 import * as R from 'ramda'
 import { css } from '@emotion/core'
 import emotionReset from 'emotion-reset'
-import { twilightTheme } from './primsjs-theme'
-import { githubGistTheme } from './github-gist-theme'
 import { ThemeProvider } from 'emotion-theming'
 
 const baseFontSize = 16
@@ -255,6 +253,10 @@ export const globalStyles = css`
   b {
     font-weight: 600;
     color: ${theme.colors.primary.dark};
+  }
+
+  li {
+    list-style-position: inside;
   }
 `
 

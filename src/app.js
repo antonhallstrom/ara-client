@@ -19,6 +19,7 @@ class App extends React.Component {
           <Route path="/blog" exact component={views.Blog} />
           <Route path="/blog/post/:id" component={views.Post} />
           <Route path="/biography" component={views.Biography} />
+          <Route path="/editor" component={views.PostEditor} />
           <Route component={views.NotFound} />
         </Switch>
       </div>
