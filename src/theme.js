@@ -74,12 +74,12 @@ export const theme = {
     },
     purple: {
       default: '#7c4dff',
-      dark: '#3f1dcb',
+      dark: '#ECE1FD',
       light: '#b47cff',
     },
     orange: {
       default: 'ffab40',
-      dark: '#c77c02',
+      dark: '#dbc5fb',
       light: '#ffdd71',
     },
   },
@@ -208,6 +208,7 @@ export const globalStyles = css`
 
   a {
     text-decoration: none;
+    color: ${theme.colors.purple.light};
   }
 
   p {
