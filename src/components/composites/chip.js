@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   color: ${props =>
     props.selected
       ? props.theme.colors.purple.light
-      : props.theme.colors.primary.light};
+      : props.theme.colors.secondary.dark};
   font-family: ${props => props.theme.fonts.secondary};
   font-size: ${props => props.theme.fonts.sizes[5]};
 `

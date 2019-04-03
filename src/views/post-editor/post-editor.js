@@ -1,8 +1,29 @@
 import * as R from 'ramda'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import * as Layout from '../../components/layouts'
 import { Constraint, Flex, Space } from '../../components/elements'
 import { Markdown, Chip } from '../../components/composites'
+import styled from '@emotion/styled'
+
+const TextArea = styled.textarea`
+  display: flex;
+  width: 100%;
+  min-height: 300px;
+  border-width: 1px;
+  border-radius: 4px;
+  font-size: ${props => props.theme.fonts.sizes[4]};
+  color: ${props => props.theme.colors.secondary.dark};
+  border-color: ${props => props.theme.colors.secondary.dark};
+  padding: 16px;
+  box-sizing: border-box;
+  caret-color: ${props => props.theme.colors.purple.light};
+  resize: none;
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${props => props.theme.colors.purple.light};
+  }
+`
 
 const data = [
   {
@@ -30,9 +51,47 @@ const data = [
 export function PostEditor() {
   const [markdown, setMarkdown] = useState('')
   const [categories, setCategory] = useState([])
+  const [cursorStart, setCursorStart] = useState(null)
+  const markdownRef = useRef(null)
 
   function handleChange(event) {
     setMarkdown(event.target.value)
+  }
+
+  function handleKeyDown(event) {
+    switch (event.keyCode) {
+      case 9: {
+        event.preventDefault()
+        setCursorStart(markdownRef.current.selectionStart)
+        setMarkdown(
+          R.join(
+            '',
+            R.insert(
+              markdownRef.current.selectionStart,
+              ' '.repeat(2),
+              markdown
+            )
+          )
+        )
+        break
+      }
+      default:
+        return
+    }
+  }
+
+  function handleKeyUp(event) {
+    switch (event.keyCode) {
+      case 9: {
+        event.preventDefault()
+        // focus cursor on the end of the inserted tab
+        markdownRef.current.focus()
+        markdownRef.current.selectionEnd = cursorStart + 2
+        break
+      }
+      default:
+        return
+    }
   }
 
   function handleCategoriesChange(category) {
@@ -65,8 +124,24 @@ export function PostEditor() {
               )}
             </Flex>
           </Space>
-          <textarea onChange={handleChange} value={markdown} />
-          <Markdown markdown={markdown} />
+          <h4>Markdown editor</h4>
+          <Space top="2" bottom="3">
+            <TextArea
+              ref={markdownRef}
+              value={markdown}
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              onKeyDown={handleKeyDown}
+              onKeyUp={handleKeyUp}
+              onChange={handleChange}
+            />
+          </Space>
+          <h4>Editor output</h4>
+          <Space top="2" bottom="3">
+            <Markdown markdown={markdown} />
+          </Space>
         </Constraint>
       </Flex>
     </Layout.Default>
