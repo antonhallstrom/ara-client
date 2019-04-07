@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import * as Layout from '../../components/layouts'
 import { Constraint, Flex } from '../../components/elements'
@@ -7,6 +7,13 @@ import { Constraint, Flex } from '../../components/elements'
 import { BlogPostCard } from '../../components/composites'
 
 const data = [
+  {
+    id: 0,
+    title: 'In pure functions we trust',
+    category: 'Life',
+    subtitle: 'Functional programming for the win baby!',
+    published: 'Feb 18',
+  },
   {
     id: 1,
     title: 'Traded My Brush For A Keyboard',
@@ -33,6 +40,11 @@ const data = [
 ]
 
 export function Blog(props) {
+
+  useEffect(() => {
+    props.onFetchPost()
+  }, [props.onFetchPost])
+
   return (
     <Layout.Blog>
       <Flex column align="center">

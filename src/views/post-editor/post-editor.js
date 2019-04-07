@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types'
 import * as R from 'ramda'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import * as Layout from '../../components/layouts'
 import { Constraint, Flex, Space } from '../../components/elements'
 import { Markdown, Chip } from '../../components/composites'
@@ -22,6 +23,23 @@ const TextArea = styled.textarea`
   &:focus {
     outline: none;
     border: 1px solid ${props => props.theme.colors.purple.light};
+  }
+`
+
+const Button = styled.button`
+  border-radius: 4px;
+  padding: 12px 16px;
+  outline: none;
+  font-family: ${props => props.theme.fonts.primary};
+  font-weight: 400;
+  font-size: ${props => props.theme.fonts.sizes[3]};
+  text-transform: uppercase;
+  color: ${props => props.theme.colors.purple.default};
+  border: 2px solid ${props => props.theme.colors.purple.default};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.theme.colors.purple.dark};
   }
 `
 
@@ -48,11 +66,18 @@ const data = [
   },
 ]
 
-export function PostEditor() {
+export function PostEditor(props) {
   const [markdown, setMarkdown] = useState('')
   const [categories, setCategory] = useState([])
   const [cursorStart, setCursorStart] = useState(null)
   const markdownRef = useRef(null)
+
+  useEffect(
+    () => {
+      props.onFetchPosts()
+    },
+    [props.onFetchPosts]
+  )
 
   function handleChange(event) {
     setMarkdown(event.target.value)
@@ -142,8 +167,28 @@ export function PostEditor() {
           <Space top="2" bottom="3">
             <Markdown markdown={markdown} />
           </Space>
+          <Flex>
+            <Space right="2">
+              <Button onClick={() => props.onCreatePost()}>Save draft</Button>
+            </Space>
+            <Space>
+              <Button onClick={() => props.onUserLogin()}>Authorize</Button>
+            </Space>
+          </Flex>
+          <Space y="2">
+            {R.map(
+              x => (
+                <p key={props.title}>{x.title}</p>
+              ),
+              props.posts
+            )}
+          </Space>
         </Constraint>
       </Flex>
     </Layout.Default>
   )
+}
+
+PostEditor.propTypes = {
+  onCreatePost: PropTypes.func,
 }
