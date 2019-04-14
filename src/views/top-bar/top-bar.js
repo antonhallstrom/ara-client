@@ -15,13 +15,14 @@ const PAGES = [
   { key: 3, path: '/', label: 'Home' },
   { key: 4, path: '/portfolio', label: 'Portfolio' },
   { key: 5, path: '/book-reviws', label: 'Book reviews' },
+  { key: 6, path: '/videos', label: 'Videos' },
 ]
 
 function Component() {
   return (
     <Bar>
       <Space y="1" x="0">
-        <Flex justify="center">
+        <Flex justify="center" wrap="true">
           {R.map(
             data => (
               <Space all="1" key={data.key}>
