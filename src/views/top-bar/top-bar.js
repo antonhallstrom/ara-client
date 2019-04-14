@@ -14,6 +14,7 @@ const PAGES = [
   { key: 2, path: '/biography', label: 'Biography' },
   { key: 3, path: '/', label: 'Home' },
   { key: 4, path: '/portfolio', label: 'Portfolio' },
+  { key: 5, path: '/book-reviws', label: 'Book reviews' },
 ]
 
 function Component() {

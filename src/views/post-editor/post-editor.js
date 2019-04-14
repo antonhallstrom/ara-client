@@ -37,9 +37,27 @@ const Button = styled.button`
   color: ${props => props.theme.colors.purple.default};
   border: 2px solid ${props => props.theme.colors.purple.default};
   cursor: pointer;
+  background-color: ${props => props.theme.colors.white};
 
   &:hover {
     background-color: ${props => props.theme.colors.purple.dark};
+  }
+`
+
+const Input = styled.input`
+  outline: none;
+  border: 1px solid ${props => props.theme.colors.secondary.dark};
+  border-radius: 4px;
+  font-size: ${props => props.theme.fonts.sizes[4]};
+  color: ${props => props.theme.colors.secondary.dark};
+  padding: 16px;
+  box-sizing: border-box;
+  caret-color: ${props => props.theme.colors.purple.light};
+  resize: none;
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${props => props.theme.colors.purple.light};
   }
 `
 
@@ -67,6 +85,8 @@ const data = [
 ]
 
 export function PostEditor(props) {
+  const [title, setTitle] = useState('')
+  const [subtitle, setSubtitle] = useState('')
   const [markdown, setMarkdown] = useState('')
   const [categories, setCategory] = useState([])
   const [cursorStart, setCursorStart] = useState(null)
@@ -78,6 +98,16 @@ export function PostEditor(props) {
     },
     [props.onFetchPosts]
   )
+
+  function handleSavePost() {
+    props.onCreatePost({
+      title: title,
+      subtitle: subtitle,
+      categories: categories,
+      content: markdown,
+      shouldPublish: true,
+    })
+  }
 
   function handleChange(event) {
     setMarkdown(event.target.value)
@@ -149,6 +179,14 @@ export function PostEditor(props) {
               )}
             </Flex>
           </Space>
+          <h4>Title</h4>
+          <Space top="2" bottom="3">
+            <Input onChange={event => setTitle(event.target.value)} />
+          </Space>
+          <h4>Subtitle</h4>
+          <Space top="2" bottom="3">
+            <Input onChange={event => setSubtitle(event.target.value)} />
+          </Space>
           <h4>Markdown editor</h4>
           <Space top="2" bottom="3">
             <TextArea
@@ -169,7 +207,7 @@ export function PostEditor(props) {
           </Space>
           <Flex>
             <Space right="2">
-              <Button onClick={() => props.onCreatePost()}>Save draft</Button>
+              <Button onClick={handleSavePost}>Save draft</Button>
             </Space>
             <Space>
               <Button onClick={() => props.onUserLogin()}>Authorize</Button>
@@ -178,7 +216,17 @@ export function PostEditor(props) {
           <Space y="2">
             {R.map(
               x => (
-                <p key={props.title}>{x.title}</p>
+                <div key={x._id}>
+                  {R.map(
+                    y => (
+                      <p key={y}>{y}</p>
+                    ),
+                    x.categories
+                  )}
+                  <h2>{x.title}</h2>
+                  <h4>{x.subtitle}</h4>
+                  <Markdown markdown={x.content} />
+                </div>
               ),
               props.posts
             )}
@@ -190,5 +238,8 @@ export function PostEditor(props) {
 }
 
 PostEditor.propTypes = {
+  posts: PropTypes.array,
   onCreatePost: PropTypes.func,
+  onUserLogin: PropTypes.func,
+  onFetchPosts: PropTypes.func,
 }

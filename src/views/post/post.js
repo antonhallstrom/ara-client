@@ -12,7 +12,7 @@ export function Post(props) {
           <h1>{props.title}</h1>
           <h2>{props.subtitle}</h2>
           <Space y="2">
-            <Markdown markdown={props.text} />
+            <Markdown markdown={props.content} />
           </Space>
         </Constraint>
       </Flex>
@@ -23,5 +23,5 @@ export function Post(props) {
 Post.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  text: PropTypes.string,
+  content: PropTypes.string,
 }

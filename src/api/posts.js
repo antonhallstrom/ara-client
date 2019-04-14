@@ -20,6 +20,7 @@ export function createPost(post, config) {
   const params = {
     body: {
       title: post.title,
+      subtitle: post.subtitle,
       content: post.content,
       shouldPublish: post.shouldPublish,
     },

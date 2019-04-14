@@ -42,6 +42,8 @@ function mapDispatchToProps(dispatch) {
         api.createPost(
           {
             title: payload.title,
+            subtitle: payload.subtitle,
+            categories: payload.categories,
             content: payload.content,
             shouldPublish: payload.shouldPublish,
           },
@@ -49,8 +51,10 @@ function mapDispatchToProps(dispatch) {
             success: () =>
               posts.insert({
                 title: payload.title,
+                subtitle: payload.subtitle,
+                categories: payload.categories,
                 content: payload.content,
-                shouldPublish: false,
+                shouldPublish: payload.shouldPublish,
               }),
             failure: err => console.log(err),
           }

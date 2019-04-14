@@ -6,44 +6,15 @@ import { Constraint, Flex } from '../../components/elements'
 
 import { BlogPostCard } from '../../components/composites'
 
-const data = [
-  {
-    id: 0,
-    title: 'In pure functions we trust',
-    category: 'Life',
-    subtitle: 'Functional programming for the win baby!',
-    published: 'Feb 18',
-  },
-  {
-    id: 1,
-    title: 'Traded My Brush For A Keyboard',
-    category: 'Life',
-    subtitle: 'How a colossal mind shift will get you rekindled',
-    published: 'Feb 18',
-  },
-  {
-    id: 2,
-    title: 'Effectively Naming Software Thingies',
-    category: 'Programming',
-    subtitle: `CSS previous sibling selectors don’t exist, but that doesn’t mean
-    you shouldn’t use them. As with most CSS limitations, we can fake
-    them!`,
-    published: 'Feb 18',
-  },
-  {
-    id: 3,
-    title: 'Everything You Wanted To Know About package-lock.json',
-    category: 'Programming',
-    subtitle: `But Were Too Afraid To Ask`,
-    published: 'Feb 18',
-  },
-]
-
 export function Blog(props) {
-
-  useEffect(() => {
-    props.onFetchPost()
-  }, [props.onFetchPost])
+  useEffect(
+    () => {
+      if (R.isEmpty(props.posts)) {
+        props.onFetchPost()
+      }
+    },
+    [props.onFetchPost, props.posts]
+  )
 
   return (
     <Layout.Blog>
@@ -52,15 +23,15 @@ export function Blog(props) {
           {R.map(
             blogPost => (
               <BlogPostCard
-                key={blogPost.id}
-                postId={blogPost.id}
+                key={blogPost._id}
+                postId={blogPost._id}
                 title={blogPost.title}
                 subtitle={blogPost.subtitle}
-                category={blogPost.category}
+                categories={blogPost.categories}
                 published={blogPost.published}
               />
             ),
-            data
+            props.posts
           )}
         </Constraint>
       </Flex>
@@ -70,9 +41,5 @@ export function Blog(props) {
 
 Blog.propTypes = {
   posts: PropTypes.array,
-  drafts: PropTypes.array,
   onFetchPost: PropTypes.func.isRequired,
-  onCreatePost: PropTypes.func.isRequired,
-  onDeletePost: PropTypes.func.isRequired,
-  onPublishDraft: PropTypes.func.isRequired,
 }
