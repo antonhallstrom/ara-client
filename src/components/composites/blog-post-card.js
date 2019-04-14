@@ -25,7 +25,7 @@ export function BlogPostCard(props) {
       <Space y="4">
         <Flex justify="center">
           <Constraint max="600">
-            <Category>{R.join(' ', props.categories)}</Category>
+            <Category>{R.join(', ', props.categories)}</Category>
             <Title>{props.title}</Title>
             <Subtitle>{props.subtitle}</Subtitle>
             <Space y="1">

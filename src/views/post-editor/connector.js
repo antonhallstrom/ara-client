@@ -36,8 +36,6 @@ function mapDispatchToProps(dispatch) {
         ),
       onDeletePost: postId =>
         api.deletePost({ postId }, { success: () => posts.remove(postId) }),
-      onFetchPosts: () =>
-        api.fetchPosts({ success: res => posts.save(res.value) }),
       onCreatePost: payload =>
         api.createPost(
           {

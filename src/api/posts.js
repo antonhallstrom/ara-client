@@ -22,6 +22,7 @@ export function createPost(post, config) {
       title: post.title,
       subtitle: post.subtitle,
       content: post.content,
+      categories: post.categories,
       shouldPublish: post.shouldPublish,
     },
   }

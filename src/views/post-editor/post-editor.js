@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import * as R from 'ramda'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import * as Layout from '../../components/layouts'
 import { Constraint, Flex, Space } from '../../components/elements'
 import { Markdown, Chip } from '../../components/composites'
@@ -54,6 +54,7 @@ const Input = styled.input`
   box-sizing: border-box;
   caret-color: ${props => props.theme.colors.purple.light};
   resize: none;
+  width: 100%;
 
   &:focus {
     outline: none;
@@ -91,13 +92,6 @@ export function PostEditor(props) {
   const [categories, setCategory] = useState([])
   const [cursorStart, setCursorStart] = useState(null)
   const markdownRef = useRef(null)
-
-  useEffect(
-    () => {
-      props.onFetchPosts()
-    },
-    [props.onFetchPosts]
-  )
 
   function handleSavePost() {
     props.onCreatePost({
@@ -213,24 +207,6 @@ export function PostEditor(props) {
               <Button onClick={() => props.onUserLogin()}>Authorize</Button>
             </Space>
           </Flex>
-          <Space y="2">
-            {R.map(
-              x => (
-                <div key={x._id}>
-                  {R.map(
-                    y => (
-                      <p key={y}>{y}</p>
-                    ),
-                    x.categories
-                  )}
-                  <h2>{x.title}</h2>
-                  <h4>{x.subtitle}</h4>
-                  <Markdown markdown={x.content} />
-                </div>
-              ),
-              props.posts
-            )}
-          </Space>
         </Constraint>
       </Flex>
     </Layout.Default>
@@ -241,5 +217,4 @@ PostEditor.propTypes = {
   posts: PropTypes.array,
   onCreatePost: PropTypes.func,
   onUserLogin: PropTypes.func,
-  onFetchPosts: PropTypes.func,
 }
