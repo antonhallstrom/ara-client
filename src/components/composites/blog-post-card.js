@@ -19,18 +19,18 @@ const Category = styled.h6`
   text-transform: uppercase;
 `
 
-const Image = styled.img`
-  border-radius: 4px;
-  height: 100%;
-  width: 100px;
-`
+// const Image = styled.img`
+//   border-radius: 4px;
+//   height: 100%;
+//   width: 100px;
+// `
 
 export function BlogPostCard(props) {
   return (
     <Link to={`/blog/post/${props.postId}`}>
       <Space y="4">
         <Flex justify="center">
-          <Constraint max="400">
+          <Constraint max="600">
             <Category>{R.join(', ', props.categories)}</Category>
             <Title>{props.title}</Title>
             <Subtitle>{props.subtitle}</Subtitle>
@@ -38,7 +38,6 @@ export function BlogPostCard(props) {
               <small>{format(props.published, 'MMM DD YYYY')}</small>
             </Space>
           </Constraint>
-          <Image src="./vanilla-flower.jpg" />
         </Flex>
       </Space>
     </Link>

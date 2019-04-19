@@ -10,6 +10,9 @@ export const Wrapper = styled.div(props => ({
   opacity: props.isVisible ? 1 : 0,
   zIndex: props.isVisible ? 0 : -1,
   transition: 'all .150s cubic-bezier(0, 1, 0.5, 1)',
+  justifyContent: 'center',
+  display: 'flex',
+  margin: props.theme.spacing[4],
 }))
 
 export function Bar(props) {

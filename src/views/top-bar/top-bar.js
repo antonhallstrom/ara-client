@@ -1,7 +1,7 @@
 import React from 'react'
 import * as R from 'ramda'
 
-import { Bar, Space, Flex } from '../../components/elements'
+import { Bar, Constraint, Space, Flex } from '../../components/elements'
 import { NavLink } from '../../components/composites'
 
 // const PAGES = [
@@ -20,28 +20,30 @@ import { NavLink } from '../../components/composites'
 // ]
 
 const PAGES = [
-  { key: 1, path: '/blog', label: 'Blog', subPaths: ['post'] },
+  { key: 1, path: '/', label: 'Home' },
   { key: 2, path: '/biography', label: 'Biography' },
-  { key: 3, path: '/', label: 'Home' },
+  { key: 3, path: '/blog', label: 'Blog', subPaths: ['post'] },
 ]
 
 function Component() {
   return (
     <Bar>
-      <Space y="1" x="0">
-        <Flex justify="center" wrap="true">
-          {R.map(
-            data => (
-              <Space all="1" key={data.key}>
-                <NavLink to={data.path} subPaths={data.subPaths}>
-                  {data.label}
-                </NavLink>
-              </Space>
-            ),
-            PAGES
-          )}
-        </Flex>
-      </Space>
+      <Constraint max="600">
+        <Space y="1">
+          <Flex wrap="true">
+            {R.map(
+              data => (
+                <Space right="1" y="1" key={data.key}>
+                  <NavLink to={data.path} subPaths={data.subPaths}>
+                    {data.label}
+                  </NavLink>
+                </Space>
+              ),
+              PAGES
+            )}
+          </Flex>
+        </Space>
+      </Constraint>
     </Bar>
   )
 }

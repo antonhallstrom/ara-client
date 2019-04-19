@@ -201,19 +201,17 @@ export const globalStyles = css`
     color: ${theme.colors.primary.light};
   }
 
-  p,
-  a {
-    font-family: ${theme.fonts.secondary};
-    font-size: ${theme.fonts.sizes[4]};
-  }
-
   a {
     text-decoration: none;
     color: ${theme.colors.purple.light};
+    font-size: ${theme.fonts.sizes[5]};
+    font-family: ${theme.fonts.secondary};
   }
 
   p {
     color: ${theme.colors.primary.light};
+    font-family: ${theme.fonts.secondary};
+    font-size: ${theme.fonts.sizes[4]};
   }
 
   small {
