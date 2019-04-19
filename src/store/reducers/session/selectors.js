@@ -5,5 +5,5 @@ import * as R from 'ramda'
  * @param {String} token - Token
  */
 export function getAuthToken(state) {
-  return R.pathOr('', ['access_token'], state.session)
+  return R.path(['access_token'], state.session)
 }

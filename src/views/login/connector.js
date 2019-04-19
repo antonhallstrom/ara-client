@@ -3,14 +3,9 @@ import { bindActionCreators } from 'redux'
 import * as api from '../../api'
 import * as session from '../../store/reducers/session'
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, props) {
   return bindActionCreators(
     {
-      onFetchAdminStuff: () =>
-        api.admin({
-          success: res => console.log(res.value),
-          failure: err => console.log(err),
-        }),
       onUserLogin: payload =>
         api.login(
           {
@@ -18,7 +13,10 @@ function mapDispatchToProps(dispatch) {
             password: payload.password,
           },
           {
-            success: res => [session.save(res.value)],
+            success: res => [
+              session.save(res.value),
+              () => props.history.push('/editor'),
+            ],
             failure: err => console.log(err),
           }
         ),
