@@ -6,6 +6,17 @@ import { Constraint, Flex, Space } from '../../components/elements'
 import { Markdown, Chip } from '../../components/composites'
 import styled from '@emotion/styled'
 
+const images = [
+  {
+    id: 'vanilla-flower',
+    label: 'Vanilla Flower',
+  },
+  {
+    id: 'computer',
+    label: 'Computer',
+  },
+]
+
 const TextArea = styled.textarea`
   display: flex;
   width: 100%;
@@ -91,7 +102,13 @@ export function PostEditor(props) {
   const [markdown, setMarkdown] = useState('')
   const [categories, setCategory] = useState([])
   const [cursorStart, setCursorStart] = useState(null)
+  const [imageId, setImageId] = useState('')
+
   const markdownRef = useRef(null)
+
+  function handleImageChange(event) {
+    setImageId(event.target.value)
+  }
 
   function handleSavePost() {
     props.onCreatePost({
@@ -100,6 +117,7 @@ export function PostEditor(props) {
       categories: categories,
       content: markdown,
       shouldPublish: true,
+      imageId: imageId,
     })
   }
 
@@ -180,6 +198,19 @@ export function PostEditor(props) {
           <h4>Subtitle</h4>
           <Space top="2" bottom="3">
             <Input onChange={event => setSubtitle(event.target.value)} />
+          </Space>
+          <h4>Image</h4>
+          <Space top="2" bottom="3">
+            <select onChange={handleImageChange}>
+              {R.map(
+                image => (
+                  <option key={image.id} value={image.id}>
+                    {image.label}
+                  </option>
+                ),
+                images
+              )}
+            </select>
           </Space>
           <h4>Markdown editor</h4>
           <Space top="2" bottom="3">

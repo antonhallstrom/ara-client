@@ -24,6 +24,7 @@ export function createPost(post, config) {
       content: post.content,
       categories: post.categories,
       shouldPublish: post.shouldPublish,
+      imageId: post.imageId,
     },
   }
 

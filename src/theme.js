@@ -128,6 +128,7 @@ export const theme = {
   fonts: {
     primary: 'Roboto, sans-serif',
     secondary: 'Open Sans, sans-serif',
+    reading: 'Merriweather, serif',
     sizes: R.map(pxToRems(baseFontSize), [
       4,
       8,

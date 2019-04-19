@@ -9,7 +9,9 @@ export function Post(props) {
     <Layout.Default>
       <Flex column align="center">
         <Constraint max="600">
-          <h1>{props.title}</h1>
+          <Space bottom="1">
+            <h1>{props.title}</h1>
+          </Space>
           <h2>{props.subtitle}</h2>
           <Space y="2">
             <Markdown markdown={props.content} />

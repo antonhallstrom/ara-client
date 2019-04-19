@@ -43,6 +43,7 @@ function mapDispatchToProps(dispatch) {
             subtitle: payload.subtitle,
             categories: payload.categories,
             content: payload.content,
+            imageId: payload.imageId,
             shouldPublish: payload.shouldPublish,
           },
           {
@@ -52,6 +53,7 @@ function mapDispatchToProps(dispatch) {
                 subtitle: payload.subtitle,
                 categories: payload.categories,
                 content: payload.content,
+                imageId: payload.imageId,
                 shouldPublish: payload.shouldPublish,
               }),
             failure: err => console.log(err),
