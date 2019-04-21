@@ -10,10 +10,9 @@ function App() {
     <div>
       <views.TopBar />
       <Switch>
-        <Route exact path="/" component={views.Home} />
+        <Route exact path="/" component={views.Biography} />
         <Route path="/blog" exact component={views.Blog} />
         <Route path="/blog/post/:id" component={views.Post} />
-        <Route path="/biography" component={views.Biography} />
         <Route path="/login" component={views.Login} />
         <PrivateRoute path="/editor" component={views.PostEditor} />
         <Route component={views.NotFound} />

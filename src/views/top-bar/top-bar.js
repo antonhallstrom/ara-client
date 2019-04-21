@@ -20,9 +20,8 @@ import { NavLink } from '../../components/composites'
 // ]
 
 const PAGES = [
-  { key: 1, path: '/', label: 'Home' },
-  { key: 2, path: '/biography', label: 'Biography' },
-  { key: 3, path: '/blog', label: 'Blog', subPaths: ['post'] },
+  { key: 1, path: '/', label: 'Biography' },
+  { key: 2, path: '/blog', label: 'Blog', subPaths: ['post'] },
 ]
 
 function Component() {

@@ -1,11 +1,17 @@
 import React from 'react'
-import { Card } from '../../components/elements'
+import { Constraint, Flex, Space } from '../../components/elements'
 import * as Layout from '../../components/layouts'
 
 export function Home() {
   return (
     <Layout.Default>
-      <Card>Hi</Card>
+      <Flex column align="center" wrap>
+        <Constraint max="600">
+          <Space y="1">
+            <h1 />
+          </Space>
+        </Constraint>
+      </Flex>
     </Layout.Default>
   )
 }

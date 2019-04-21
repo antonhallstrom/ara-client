@@ -211,7 +211,7 @@ export const globalStyles = css`
   p {
     color: ${theme.colors.primary.light};
     font-family: ${theme.fonts.secondary};
-    font-size: ${theme.fonts.sizes[4]};
+    font-size: ${theme.fonts.sizes[5]};
   }
 
   small {
