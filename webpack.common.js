@@ -14,7 +14,7 @@ module.exports = {
       ARA_API_URL: JSON.stringify(process.env.ARA_API_URL),
     }),
     new DotenvPlugin({
-      path: './.env',
+      path: path.resolve(__dirname, './.env'),
     }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
