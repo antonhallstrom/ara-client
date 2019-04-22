@@ -76,11 +76,13 @@ export function Biography() {
             </section>
             <p>
               My name is Anton Hallström, and I make stuff. Stuff like artwork,
-              software and articles. I’m interested in understanding how things
-              work, may that be a library like{' '}
-              <a href="https://reactjs.org/">React</a>, the processes of making
-              a painting, or the way authors can connect and transmit their work
-              to the reader.
+              software and articles.
+            </p>
+            <p>
+              I’m interested in understanding how things work, may that be a
+              library like <a href="https://reactjs.org/">React</a>, the
+              processes of making a painting, or the way authors can connect and
+              transmit their work to the reader.
             </p>
             <br />
             <p>
