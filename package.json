@@ -8,7 +8,8 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "yarn build & webpack-dev-server --config webpack.dev.js",
-    "test": "jest --config jest.json"
+    "test": "jest --config jest.json",
+    "deploy": "git push heroku master"
   },
   "dependencies": {
     "@emotion/core": "^10.0.5",
