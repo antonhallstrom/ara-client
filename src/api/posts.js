@@ -6,7 +6,7 @@ import http from './https'
  * @param {FetchConfig} config
  */
 export function fetchPosts(config) {
-  return http.get('api/v1/posts', config)
+  return http.get('/api/v1/posts', config)
 }
 
 /**
