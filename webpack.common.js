@@ -3,21 +3,17 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const DotenvPlugin = require('dotenv-webpack')
 
 module.exports = {
   entry: {
     app: path.resolve('src/index.js'),
   },
   plugins: [
-    new DotenvPlugin({
-      path: path.resolve(__dirname, './.env'),
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        ARA_API_URL: JSON.stringify(process.env.ARA_API_URL),
       },
-      ARA_API_URL: JSON.stringify(process.env.ARA_API_URL),
     }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
