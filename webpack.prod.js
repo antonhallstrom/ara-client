@@ -3,36 +3,32 @@ const common = require('./webpack.common.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-module.exports = merge(
-  common,
-  { ARA_API_URL: JSON.stringify(process.env.ARA_API_URL) },
-  {
-    mode: 'production',
-    devtool: 'source-map',
-    performance: {
-      hints: false,
-    },
-    optimization: {
-      minimizer: [new TerserPlugin()],
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].[hash].css',
-        chunkFilename: '[id].[hash].css',
-      }),
+module.exports = merge(common, {
+  mode: 'production',
+  devtool: 'source-map',
+  performance: {
+    hints: false,
+  },
+  optimization: {
+    minimizer: [new TerserPlugin()],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+        ],
+      },
     ],
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            'css-loader',
-          ],
-        },
-      ],
-    },
-  }
-)
+  },
+})
