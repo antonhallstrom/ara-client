@@ -10,9 +10,7 @@ module.exports = {
     app: path.resolve('src/index.js'),
   },
   plugins: [
-    new DotenvPlugin({
-      path: path.resolve(__dirname, './.env'),
-    }),
+    new DotenvPlugin(),
     new webpack.DefinePlugin({
       ARA_API_URL: JSON.stringify(process.env.ARA_API_URL),
     }),
