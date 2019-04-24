@@ -234,9 +234,6 @@ export function PostEditor(props) {
             <Space right="2">
               <Button onClick={handleSavePost}>Save draft</Button>
             </Space>
-            <Space>
-              <Button onClick={() => props.onUserLogin()}>Authorize</Button>
-            </Space>
           </Flex>
         </Constraint>
       </Flex>
@@ -247,5 +244,4 @@ export function PostEditor(props) {
 PostEditor.propTypes = {
   posts: PropTypes.array,
   onCreatePost: PropTypes.func,
-  onUserLogin: PropTypes.func,
 }

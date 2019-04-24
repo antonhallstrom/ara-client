@@ -14,7 +14,6 @@ export const fetchApi = options => store => next => action => {
   }
 
   if (action.type === EFFECT_FETCH_API) {
-    console.log('env', process.env)
     const nextAction = R.pipe(
       R.assoc('type', FETCH),
       R.assocPath(['payload', 'url'], `${options.host}${action.payload.url}`),

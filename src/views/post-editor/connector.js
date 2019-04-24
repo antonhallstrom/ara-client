@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import * as api from '../../api'
 import * as posts from '../../store/reducers/posts'
-import * as session from '../../store/reducers/session'
 
 function mapStateToProps(state) {
   return {
@@ -15,17 +14,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      onUserLogin: () =>
-        api.login(
-          {
-            username: 'admin',
-            password: process.env.PW,
-          },
-          {
-            success: res => [session.save(res.value)],
-            failure: err => console.log(err),
-          }
-        ),
       onPublishDraft: postId =>
         api.publishDraft(
           postId,

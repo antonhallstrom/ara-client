@@ -9,12 +9,6 @@ module.exports = {
     app: path.resolve('src/index.js'),
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        ARA_API_URL: JSON.stringify(process.env.ARA_API_URL),
-      },
-    }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Ara',
