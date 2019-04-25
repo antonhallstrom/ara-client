@@ -11,6 +11,7 @@ import {
   Space,
   Title,
   Subtitle,
+  SkeletonLoader,
 } from '../../components/elements'
 
 import { format } from 'date-fns'
@@ -19,11 +20,26 @@ const Category = styled.h6`
   text-transform: uppercase;
 `
 
-// const Image = styled.img`
-//   border-radius: 4px;
-//   height: 100%;
-//   width: 100px;
-// `
+export function SkeletonBlogPostCard() {
+  return (
+    <Space y="4">
+      <Flex justify="center">
+        <Constraint max="600">
+          <Space bottom="0">
+            <SkeletonLoader width="120" height="18" />
+          </Space>
+          <Space bottom="0">
+            <SkeletonLoader width="300" height="20" />
+          </Space>
+          <SkeletonLoader width="280" height="18" />
+          <Space top="0">
+            <SkeletonLoader width="80" height="16" />
+          </Space>
+        </Constraint>
+      </Flex>
+    </Space>
+  )
+}
 
 export function BlogPostCard(props) {
   return (

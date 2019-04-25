@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 import * as Layout from '../../components/layouts'
 import { Constraint, Flex } from '../../components/elements'
 
-import { BlogPostCard } from '../../components/composites'
+import { BlogPostCard, SkeletonBlogPostCard } from '../../components/composites'
 
 export function Blog(props) {
+  const fetching = R.isEmpty(props.posts)
   useEffect(
     () => {
-      if (R.isEmpty(props.posts)) {
+      if (fetching) {
         props.onFetchPost()
       }
     },
@@ -20,18 +21,28 @@ export function Blog(props) {
     <Layout.Blog>
       <Flex column align="center">
         <Constraint max="600">
-          {R.map(
-            blogPost => (
-              <BlogPostCard
-                key={blogPost._id}
-                postId={blogPost._id}
-                title={blogPost.title}
-                subtitle={blogPost.subtitle}
-                categories={blogPost.categories}
-                published={blogPost.published}
-              />
-            ),
-            props.posts
+          {fetching ? (
+            <React.Fragment>
+              <SkeletonBlogPostCard />
+              <SkeletonBlogPostCard />
+              <SkeletonBlogPostCard />
+              <SkeletonBlogPostCard />
+              <SkeletonBlogPostCard />
+            </React.Fragment>
+          ) : (
+            R.map(
+              blogPost => (
+                <BlogPostCard
+                  key={blogPost._id}
+                  postId={blogPost._id}
+                  title={blogPost.title}
+                  subtitle={blogPost.subtitle}
+                  categories={blogPost.categories}
+                  published={blogPost.published}
+                />
+              ),
+              props.posts
+            )
           )}
         </Constraint>
       </Flex>
