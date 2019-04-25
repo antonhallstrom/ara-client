@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Flex, Space } from '../../components/elements'
 import * as Layout from '../../components/layouts'
 import styled from '@emotion/styled'
@@ -58,26 +58,20 @@ const experiences = [
 ]
 
 export function Biography() {
-  const [age, setAge] = useState(1989)
-
-  useEffect(() => {
-    const date = new Date()
-    setAge(date.getFullYear() - age)
-  }, [])
-
   return (
     <Layout.Default>
       <Flex column align="center">
         <Constraint max="600">
           <Space bottom="9">
             <section>
-              <h1>About me</h1>
+              <h1>About Me</h1>
               <br />
             </section>
             <p>
               My name is Anton Hallström, and I make stuff. Stuff like artwork,
               software and articles.
             </p>
+            <br />
             <p>
               I’m interested in understanding how things work, may that be a
               library like <a href="https://reactjs.org/">React</a>, the

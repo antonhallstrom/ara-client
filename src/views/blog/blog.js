@@ -8,6 +8,7 @@ import { BlogPostCard, SkeletonBlogPostCard } from '../../components/composites'
 
 export function Blog(props) {
   const fetching = R.isEmpty(props.posts)
+
   useEffect(
     () => {
       if (fetching) {
