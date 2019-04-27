@@ -22,7 +22,7 @@ const Category = styled.h6`
 
 export function SkeletonBlogPostCard() {
   return (
-    <Space y="4">
+    <Space bottom="4">
       <Flex justify="center">
         <Constraint max="600">
           <Space bottom="0">
@@ -44,7 +44,7 @@ export function SkeletonBlogPostCard() {
 export function BlogPostCard(props) {
   return (
     <Link to={`/blog/post/${props.postId}`}>
-      <Space y="4">
+      <Space bottom="4">
         <Flex justify="center">
           <Constraint max="600">
             <Category>{R.join(', ', props.categories)}</Category>
