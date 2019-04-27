@@ -9,6 +9,12 @@ import { BlogPostCard, SkeletonBlogPostCard } from '../../components/composites'
 export function Blog(props) {
   const fetching = R.isEmpty(props.posts)
 
+  useEffect(() => {
+    window.document.title = 'Ara - Articles'
+
+    return () => (window.document.title = 'Ara')
+  }, [])
+
   useEffect(
     () => {
       if (fetching) {

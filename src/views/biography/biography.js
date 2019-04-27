@@ -1,22 +1,10 @@
 import * as R from 'ramda'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Flex, Space } from '../../components/elements'
 import * as Layout from '../../components/layouts'
 import styled from '@emotion/styled'
 
 import { Timeline } from '../../components/composites'
-
-// const Grid = styled.article`
-//   display: grid;
-//   height: 100px;
-//   width: 100%;
-//   grid-template-columns: repeat(2, 1fr);
-//   grid-template-rows: auto;
-//   grid-gap: 8px;
-//   ${props => `@media screen and (${props.theme.breakpoints.xs}) {
-//     grid-template-columns: auto;
-//   }`};
-// `
 
 const Constraint = styled.div`
   max-width: ${props => props.max}px;
@@ -58,6 +46,12 @@ const experiences = [
 ]
 
 export function Biography() {
+  useEffect(() => {
+    window.document.title = 'Ara - Biography'
+
+    return () => (window.document.title = 'Ara')
+  }, [])
+
   return (
     <Layout.Default>
       <Flex column align="center">
