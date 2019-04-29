@@ -31,6 +31,10 @@ export function Artwork() {
   }, [])
 
   useEffect(() => {
+    if (window.innerWidth < 600 && !(window.innerWidth > 768)) {
+      return setLayout('medium')
+    }
+
     if (window.innerWidth > 600 && window.innerWidth < 1300) {
       setLayout('medium')
     }
