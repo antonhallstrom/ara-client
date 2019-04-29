@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 
 // Make responsive images, so they take full width on small device,
 // also center content
+// make image previwer when hover or clicking the images.
 
 const Image = styled.img`
   height: ${props => (props.height ? `${props.height}px` : `100%`)};
