@@ -7,5 +7,5 @@ export const Flex = styled.div(props => ({
   justifyContent: props.justify,
   flexWrap: props.wrap === 'true' ? 'wrap' : 'nowrap',
   width: props.wide ? '100%' : 'auto',
-  flexBasis: props.flexBasis,
+  flexBasis: props.basis,
 }))

@@ -260,7 +260,7 @@ export const globalStyles = css`
   }
 `
 
-const breakpoints = {
+export const breakpoints = {
   xs: 600,
   s: 600,
   m: 768,
