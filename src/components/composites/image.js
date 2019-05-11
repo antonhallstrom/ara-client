@@ -67,7 +67,11 @@ export function Image(props) {
         large: R.pathOr(false, ['complete'], large.current),
       })
     }),
-    [R.path(['complete'], small.current), R.path(['complete'], large.current)]
+    [
+      window.onload,
+      R.path(['complete'], small.current),
+      R.path(['complete'], large.current),
+    ]
   )
 
   return (
