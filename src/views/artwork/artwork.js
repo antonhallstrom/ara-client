@@ -52,41 +52,60 @@ export function Artwork() {
           {layout === 'large' && (
             <Flex style={{ height: '600px' }}>
               <Space right="1">
-                <composites.Image
-                  small="small-face.png"
-                  large="face.jpg"
-                  width="600"
-                  height="600"
-                />
+                <composites.ImagePreviewer image="face.jpg" newWidth="600">
+                  <composites.Image
+                    small="small-face.png"
+                    large="face.jpg"
+                    width="600"
+                    height="600"
+                  />
+                </composites.ImagePreviewer>
               </Space>
               <Flex wrap="true">
                 <Space bottom="0" right="0">
-                  <composites.Image
-                    small="small-background.png"
-                    large="background.jpg"
-                    width="290"
-                  />
+                  <composites.ImagePreviewer
+                    image="background.jpg"
+                    newWidth="800"
+                  >
+                    <composites.Image
+                      small="small-background.png"
+                      large="background.jpg"
+                      width="290"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space left="0" bottom="0">
-                  <composites.Image
-                    small="small-marsland.png"
-                    large="marsland.jpg"
-                    width="290"
-                  />
+                  <composites.ImagePreviewer
+                    image="marsland.jpg"
+                    newWidth="600"
+                  >
+                    <composites.Image
+                      small="small-marsland.png"
+                      large="marsland.jpg"
+                      width="290"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space top="0" right="0">
-                  <composites.Image
-                    small="small-figure.png"
-                    large="figure.jpg"
-                    width="290"
-                  />
+                  <composites.ImagePreviewer image="figure.jpg" newWidth="600">
+                    <composites.Image
+                      small="small-figure.png"
+                      large="figure.jpg"
+                      width="290"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space left="0" top="0">
-                  <composites.Image
-                    small="small-roboface.png"
-                    large="roboface.jpg"
-                    width="290"
-                  />
+                  <composites.ImagePreviewer
+                    image="roboface.jpg"
+                    newWidth="600"
+                  >
+                    <composites.Image
+                      small="small-roboface.png"
+                      large="roboface.jpg"
+                      width="290"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
               </Flex>
             </Flex>
@@ -95,44 +114,63 @@ export function Artwork() {
             <Flex justify="center" basis="400px">
               <Flex wrap="true">
                 <Space all="0">
-                  <composites.Image
-                    small="small-face.png"
-                    large="face.jpg"
-                    width="288"
-                    height="288"
-                  />
+                  <composites.ImagePreviewer image="face.jpg" newWidth="400">
+                    <composites.Image
+                      small="small-face.png"
+                      large="face.jpg"
+                      width="288"
+                      height="288"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space all="0">
-                  <composites.Image
-                    small="small-background.png"
-                    large="background.jpg"
-                    width="288"
-                    height="288"
-                  />
+                  <composites.ImagePreviewer
+                    image="background.jpg"
+                    newWidth="400"
+                  >
+                    <composites.Image
+                      small="small-background.png"
+                      large="background.jpg"
+                      width="288"
+                      height="288"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space all="0">
-                  <composites.Image
-                    small="small-marsland.png"
-                    large="marsland.jpg"
-                    width="288"
-                    height="288"
-                  />
+                  <composites.ImagePreviewer
+                    image="marsland.jpg"
+                    newWidth="400"
+                  >
+                    <composites.Image
+                      small="small-marsland.png"
+                      large="marsland.jpg"
+                      width="288"
+                      height="288"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space all="0">
-                  <composites.Image
-                    small="small-figure.png"
-                    large="figure.jpg"
-                    width="288"
-                    height="288"
-                  />
+                  <composites.ImagePreviewer image="figure.jpg" newWidth="400">
+                    <composites.Image
+                      small="small-figure.png"
+                      large="figure.jpg"
+                      width="288"
+                      height="288"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
                 <Space all="0">
-                  <composites.Image
-                    small="small-roboface.png"
-                    large="roboface.jpg"
-                    width="288"
-                    height="288"
-                  />
+                  <composites.ImagePreviewer
+                    image="roboface.jpg"
+                    newWidth="400"
+                  >
+                    <composites.Image
+                      small="small-roboface.png"
+                      large="roboface.jpg"
+                      width="288"
+                      height="288"
+                    />
+                  </composites.ImagePreviewer>
                 </Space>
               </Flex>
             </Flex>
