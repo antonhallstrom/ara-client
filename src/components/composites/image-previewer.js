@@ -2,7 +2,17 @@ import PropTypes from 'prop-types'
 import * as R from 'ramda'
 import React, { useRef, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
-import { ModalTest } from '../elements'
+
+import ReactDOM from 'react-dom'
+const modalRoot = document.getElementById('modal-root')
+
+export function Modal(props) {
+  return ReactDOM.createPortal(props.children, modalRoot)
+}
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 // aspect ratio formula
 // how to know the new height = width / height
@@ -73,7 +83,7 @@ export function ImagePreviewer(props) {
   return (
     <Previewer onClick={() => onShow(R.not(show))}>
       {show && (
-        <ModalTest onClick={() => onShow(R.not(show))}>
+        <Modal onClick={() => onShow(R.not(show))}>
           <ImageOverlay>
             <Image
               ref={imageRef}
@@ -82,7 +92,7 @@ export function ImagePreviewer(props) {
               height={height}
             />
           </ImageOverlay>
-        </ModalTest>
+        </Modal>
       )}
       <Overlay />
       <div>{props.children}</div>
