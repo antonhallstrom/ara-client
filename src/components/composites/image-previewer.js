@@ -37,7 +37,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 9999;
   opacity: 0;
 
   &:hover {
@@ -53,7 +53,7 @@ const ImageOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 4;
+  z-index: 10000;
   background-color: rgba(0, 0, 0, 0.98);
   cursor: pointer;
   display: flex;

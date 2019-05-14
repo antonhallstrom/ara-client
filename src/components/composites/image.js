@@ -85,7 +85,7 @@ export function Image(props) {
         setHeight(newHeight)
       }
     },
-    [large, width, height]
+    [large, width, height, props.newWidth]
   )
 
   return (
