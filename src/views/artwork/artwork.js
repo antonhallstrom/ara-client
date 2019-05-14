@@ -9,6 +9,8 @@ import * as composites from '../../components/composites'
 
 export function Artwork() {
   const [layout, setLayout] = useState(null)
+  const [imageWidth, setImageWidth] = useState('')
+
   useEffect(() => {
     window.document.title = 'Ara - Artwork'
 
@@ -32,6 +34,9 @@ export function Artwork() {
   // TODO: React error, can't do state update on an unmounted component.
   useEffect(
     () => {
+      const width = window.innerWidth - 64
+      setImageWidth(width > 424 ? 424 : width)
+
       window.addEventListener('resize', () => {
         if (window.innerWidth > 600 && window.innerWidth < 1315) {
           setLayout('medium')
@@ -56,8 +61,8 @@ export function Artwork() {
                   <composites.Image
                     small="small-face.png"
                     large="face.jpg"
-                    width="600"
-                    height="600"
+                    fixedWidth="600"
+                    fixedHeight="600"
                   />
                 </composites.ImagePreviewer>
               </Space>
@@ -70,7 +75,8 @@ export function Artwork() {
                     <composites.Image
                       small="small-background.png"
                       large="background.jpg"
-                      width="290"
+                      fixedWidth="290"
+                      fixedHeight="296"
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -82,7 +88,8 @@ export function Artwork() {
                     <composites.Image
                       small="small-marsland.png"
                       large="marsland.jpg"
-                      width="290"
+                      fixedWidth="290"
+                      fixedHeight="296"
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -91,7 +98,8 @@ export function Artwork() {
                     <composites.Image
                       small="small-figure.png"
                       large="figure.jpg"
-                      width="290"
+                      fixedWidth="290"
+                      fixedHeight="296"
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -103,7 +111,8 @@ export function Artwork() {
                     <composites.Image
                       small="small-roboface.png"
                       large="roboface.jpg"
-                      width="290"
+                      fixedWidth="290"
+                      fixedHeight="296"
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -118,8 +127,7 @@ export function Artwork() {
                     <composites.Image
                       small="small-face.png"
                       large="face.jpg"
-                      width="288"
-                      height="288"
+                      newWidth={imageWidth}
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -131,8 +139,7 @@ export function Artwork() {
                     <composites.Image
                       small="small-background.png"
                       large="background.jpg"
-                      width="288"
-                      height="288"
+                      newWidth={imageWidth}
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -144,8 +151,7 @@ export function Artwork() {
                     <composites.Image
                       small="small-marsland.png"
                       large="marsland.jpg"
-                      width="288"
-                      height="288"
+                      newWidth={imageWidth}
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -154,8 +160,7 @@ export function Artwork() {
                     <composites.Image
                       small="small-figure.png"
                       large="figure.jpg"
-                      width="288"
-                      height="288"
+                      newWidth={imageWidth}
                     />
                   </composites.ImagePreviewer>
                 </Space>
@@ -167,8 +172,7 @@ export function Artwork() {
                     <composites.Image
                       small="small-roboface.png"
                       large="roboface.jpg"
-                      width="288"
-                      height="288"
+                      newWidth={imageWidth}
                     />
                   </composites.ImagePreviewer>
                 </Space>

@@ -18,6 +18,7 @@ Modal.propTypes = {
 // how to know the new height = width / height
 // how to know the new width = height / width
 // then divide the aspect ratio to the new width.
+// load image once somehow
 
 const Previewer = styled.div`
   cursor: pointer;

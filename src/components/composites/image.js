@@ -10,8 +10,7 @@ const Placeholder = styled.div`
   position: relative;
   overflow: hidden;
   height: ${props => (props.height ? `${props.height}px` : `100%`)};
-  width: ${props => props.width}px;
-  min-height: 296px;
+  width: ${props => `${props.width}px`};
 `
 
 const AspectRatioFill = styled.div`
@@ -56,9 +55,10 @@ const ReadyImage = styled.img`
 
 export function Image(props) {
   const [loaded, setProcessing] = useState({})
-
-  const small = useRef()
-  const large = useRef()
+  const [width, setWidth] = useState('')
+  const [height, setHeight] = useState('')
+  const small = useRef(null)
+  const large = useRef(null)
 
   useEffect(
     (window.onload = () => {
@@ -74,9 +74,26 @@ export function Image(props) {
     ]
   )
 
+  useEffect(
+    () => {
+      if (large) {
+        const naturalWidth = R.path(['current', 'naturalWidth'], large)
+        const naturalHeight = R.path(['current', 'naturalHeight'], large)
+
+        const newHeight = (naturalHeight / naturalWidth) * props.newWidth
+        setWidth(props.newWidth)
+        setHeight(newHeight)
+      }
+    },
+    [large, width, height]
+  )
+
   return (
     <div>
-      <Placeholder width={props.width} height={props.height}>
+      <Placeholder
+        width={props.fixedWidth ? props.fixedWidth : width}
+        height={props.fixedHeight ? props.fixedHeight : height}
+      >
         <div loaded={loaded.small} ref={small} src={props.small} />
         <Img loaded={loaded.small} ref={small} src={props.small} />
         <ReadyImage ref={large} loaded={loaded.large} src={props.large} />
@@ -87,6 +104,9 @@ export function Image(props) {
 }
 
 Image.propTypes = {
+  fixedWidth: PropTypes.string,
+  fixedHeight: PropTypes.string,
+  newWidth: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
   large: PropTypes.string.isRequired,
