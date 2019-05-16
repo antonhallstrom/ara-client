@@ -82,10 +82,17 @@ export function Image(props) {
 
         const newHeight = (naturalHeight / naturalWidth) * props.newWidth
         setWidth(props.newWidth)
-        setHeight(newHeight)
+        setHeight(Math.round(newHeight))
       }
     },
-    [large, width, height, props.newWidth]
+    [
+      large,
+      width,
+      height,
+      props.newWidth,
+      R.path(['current', 'naturalWidth'], large),
+      R.path(['current', 'naturalHeight'], large),
+    ]
   )
 
   return (
