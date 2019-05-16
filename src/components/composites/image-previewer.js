@@ -75,10 +75,18 @@ export function ImagePreviewer(props) {
 
         const newHeight = (naturalHeight / naturalWidth) * props.newWidth
         setWidth(props.newWidth)
-        setHeight(newHeight)
+        setHeight(Math.round(newHeight))
       }
     },
-    [imageRef, props.image, width, height]
+    [
+      imageRef,
+      props.image,
+      width,
+      height,
+      props.newWidth,
+      R.path(['current', 'naturalHeight'], imageRef),
+      R.path(['current', 'naturalWidth'], imageRef),
+    ]
   )
 
   return (
