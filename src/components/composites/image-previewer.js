@@ -65,7 +65,7 @@ export function ImagePreviewer(props) {
   useEffect(
     () => {
       const imgPath = R.path(
-        ['current', 'firstChild', 'firstChild', 'children', 2],
+        ['current', 'firstChild', 'firstChild', 'children', 1],
         imageToClone
       )
 
@@ -76,7 +76,7 @@ export function ImagePreviewer(props) {
       setWidth(props.newWidth)
       setHeight(Math.round(newHeight))
     },
-    [imageToClone.current]
+    [imageToClone]
   )
 
   return (

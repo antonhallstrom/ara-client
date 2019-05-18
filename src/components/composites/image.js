@@ -17,41 +17,34 @@ const AspectRatioFill = styled.div`
   padding-bottom: 66.6%;
 `
 
-const Img = styled.img`
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: opacity 1s linear;
-  object-fit: cover;
-  filter: blur(50px);
+const Img = styled('img', {
+  shouldForwardProp: prop => prop !== 'loaded',
+})(props => ({
+  position: 'absolute',
+  opacity: props.loaded ? 1 : 0,
+  top: 0,
+  left: 0,
+  height: '100%',
+  width: '100%',
+  transition: 'opacity 1s linear',
+  objectFit: 'cover',
+  filter: 'blur(50px)',
   /* this is needed so Safari keeps sharp edges */
-  transform: scale(1);
+  transform: 'scale(1)',
+}))
 
-  ${props =>
-    props.loaded &&
-    `
-    opacity: 1;
-  `}
-`
-
-const ReadyImage = styled.img`
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  transition: opacity 1s linear;
-  object-fit: cover;
-  ${props =>
-    props.loaded &&
-    `
-    opacity: 1;
-  `}
-`
+const ReadyImage = styled('img', {
+  shouldForwardProp: prop => prop !== 'loaded',
+})(props => ({
+  position: 'absolute',
+  opacity: props.loaded ? 1 : 0,
+  top: 0,
+  left: 0,
+  height: '100%',
+  width: '100%',
+  transition: 'opacity 1s linear',
+  objectFit: 'cover',
+}))
 
 export function Image(props) {
   const [loaded, setProcessing] = useState({})
@@ -101,7 +94,6 @@ export function Image(props) {
         width={props.fixedWidth ? props.fixedWidth : width}
         height={props.fixedHeight ? props.fixedHeight : height}
       >
-        <div loaded={loaded.small} ref={small} src={props.small} />
         <Img loaded={loaded.small} ref={small} src={props.small} />
         <ReadyImage ref={large} loaded={loaded.large} src={props.large} />
         <AspectRatioFill />
@@ -113,8 +105,8 @@ export function Image(props) {
 Image.propTypes = {
   fixedWidth: PropTypes.string,
   fixedHeight: PropTypes.string,
-  newWidth: PropTypes.string,
-  height: PropTypes.string,
+  newWidth: PropTypes.number,
+  height: PropTypes.number,
   width: PropTypes.string,
   large: PropTypes.string.isRequired,
   small: PropTypes.string.isRequired,

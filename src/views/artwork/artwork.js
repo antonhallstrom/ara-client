@@ -3,7 +3,6 @@ import { Constraint, Flex, Space } from '../../components/elements'
 import * as Layout from '../../components/layouts'
 import * as composites from '../../components/composites'
 
-// Make responsive images, so they take full width on small device,
 // also center content
 // make image previwer when hover or clicking the images.
 
