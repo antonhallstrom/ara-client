@@ -260,7 +260,7 @@ export const globalStyles = css`
   }
 
   pre {
-    white-space: normal;
+    white-space: pre-line;
   }
 `
 
