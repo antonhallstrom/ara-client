@@ -21,7 +21,7 @@ export function Blog(props) {
         props.onFetchPost()
       }
     },
-    [props.onFetchPost, props.posts]
+    [props.onFetchPost]
   )
 
   return (
