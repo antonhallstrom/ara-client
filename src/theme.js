@@ -258,6 +258,10 @@ export const globalStyles = css`
   li {
     list-style-position: inside;
   }
+
+  pre {
+    white-space: normal;
+  }
 `
 
 export const breakpoints = {

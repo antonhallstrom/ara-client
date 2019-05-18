@@ -94,6 +94,18 @@ const data = [
     label: 'Health',
     value: 'Health',
   },
+  {
+    label: 'HTML',
+    value: 'HTML',
+  },
+  {
+    label: 'JavaScript',
+    value: 'JavaScript',
+  },
+  {
+    label: 'Css',
+    value: 'Css',
+  },
 ]
 
 export function PostEditor(props) {
