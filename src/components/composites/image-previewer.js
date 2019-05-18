@@ -39,12 +39,6 @@ const Overlay = styled.div`
   bottom: 0;
   z-index: 9999;
   opacity: 0;
-
-  &:hover {
-    background-color: ${props => props.theme.colors.purple.light};
-    transition: opacity 0.1s linear;
-    opacity: 0.3;
-  }
 `
 
 const ImageOverlay = styled.div`
@@ -66,27 +60,23 @@ export function ImagePreviewer(props) {
   const [width, setWidth] = useState('')
   const [height, setHeight] = useState('')
   const imageRef = useRef(null)
+  const imageToClone = useRef(null)
 
   useEffect(
     () => {
-      if (props.image) {
-        const naturalWidth = R.path(['current', 'naturalWidth'], imageRef)
-        const naturalHeight = R.path(['current', 'naturalHeight'], imageRef)
+      const imgPath = R.path(
+        ['current', 'firstChild', 'firstChild', 'children', 2],
+        imageToClone
+      )
 
-        const newHeight = (naturalHeight / naturalWidth) * props.newWidth
-        setWidth(props.newWidth)
-        setHeight(Math.round(newHeight))
-      }
+      const naturalWidth = R.path(['naturalWidth'], imgPath)
+      const naturalHeight = R.path(['naturalHeight'], imgPath)
+
+      const newHeight = (naturalHeight / naturalWidth) * props.newWidth
+      setWidth(props.newWidth)
+      setHeight(Math.round(newHeight))
     },
-    [
-      imageRef,
-      props.image,
-      width,
-      height,
-      props.newWidth,
-      R.path(['current', 'naturalHeight'], imageRef),
-      R.path(['current', 'naturalWidth'], imageRef),
-    ]
+    [imageToClone.current]
   )
 
   return (
@@ -104,7 +94,7 @@ export function ImagePreviewer(props) {
         </Modal>
       )}
       <Overlay />
-      <div>{props.children}</div>
+      <div ref={imageToClone}>{props.children}</div>
     </Previewer>
   )
 }
