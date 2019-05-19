@@ -262,6 +262,10 @@ export const globalStyles = css`
   pre {
     white-space: pre-line;
   }
+
+  code {
+    white-space: pre-wrap;
+  }
 `
 
 export const breakpoints = {
