@@ -30,6 +30,7 @@ function App() {
       <views.TopBar />
       <Switch>
         <Route exact path="/" component={views.Biography} />
+        <Route path="/book-summaries" component={views.BookSummaries} />
         <Route path="/blog" exact component={views.Blog} />
         <Route path="/blog/post/:id" component={views.Post} />
         <Route path="/login" component={views.Login} />

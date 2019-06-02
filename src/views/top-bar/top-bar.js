@@ -23,6 +23,7 @@ const PAGES = [
   { key: 1, path: '/', label: 'Biography' },
   { key: 2, path: '/blog', label: 'Blog', subPaths: ['post'] },
   { key: 3, path: '/artwork', label: 'Artwork' },
+  { key: 4, path: '/book-summaries', label: 'Book Summaries' },
 ]
 
 function Component() {
@@ -33,7 +34,7 @@ function Component() {
           <Flex wrap="true">
             {R.map(
               data => (
-                <Space right="1" y="1" key={data.key}>
+                <Space right="2" y="1" key={data.key}>
                   <NavLink to={data.path} subPaths={data.subPaths}>
                     {data.label}
                   </NavLink>

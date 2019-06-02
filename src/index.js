@@ -8,7 +8,7 @@ import App from './app'
 import { ScrollTop } from './components/elements'
 import { ConnectedRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
-const history = createBrowserHistory()
+const history = createBrowserHistory({ basename: '/' })
 
 export const store = configureStore(history, {})
 
