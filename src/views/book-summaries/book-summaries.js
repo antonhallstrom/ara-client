@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import * as Layout from '../../components/layouts'
 import { Constraint, Space, Flex } from '../../components/elements'
 import styled from '@emotion/styled'
@@ -9,7 +9,7 @@ import * as composites from '../../components/composites'
 const Scene = styled.div`
   position: relative;
   width: ${props => props.width}px;
-  height: 250px;
+  height: 220px;
   margin: 80px auto;
   perspective: 1000px;
 `
@@ -88,9 +88,8 @@ function radius(width, degrees) {
 }
 
 export function BookSummaries(props) {
-  const [bookId, setBook] = useState(null)
   const [degree, setDegrees] = useState(0)
-  const [index, setIndex] = useState(0)
+  const [cursor, setCursor] = useState(0)
   const booksCount = books.length
   const width = 150
   const itemRef = useRef(null)
@@ -98,21 +97,23 @@ export function BookSummaries(props) {
     return 360 / n
   }
 
-  useEffect(() => {
-    setBook(R.head(books).id)
-  }, [])
-
-  function handleBook(left) {
-    if (left) {
-      setIndex(index + 1)
-      const ids = [2, 1, 0]
-      setBook(ids[Math.abs(index) % booksCount])
-      return setDegrees(degree + degrees(booksCount))
+  function next() {
+    if (cursor + 1 === books.length) {
+      setDegrees(degree - degrees(books.length))
+      return setCursor(0)
     } else {
-      setIndex(index - 1)
-      const ids = [1, 2, 0]
-      setBook(ids[Math.abs(index) % booksCount])
-      return setDegrees(degree - degrees(booksCount))
+      setDegrees(degree - degrees(books.length))
+      return setCursor(cursor + 1)
+    }
+  }
+
+  function prev() {
+    if (cursor - 1 === -1) {
+      setDegrees(degree + degrees(books.length))
+      return setCursor(books.length - 1)
+    } else {
+      setDegrees(degree + degrees(booksCount))
+      return setCursor(cursor - 1)
     }
   }
 
@@ -120,12 +121,12 @@ export function BookSummaries(props) {
     <Layout.BookSummaries>
       <Flex justify="center">
         <Constraint max="600" width={width}>
-          <Space bottom="1">
-            <h2>Books read in 2019</h2>
-          </Space>
+          <Flex justify="center">
+            <h1>Books read in 2019</h1>
+          </Flex>
           <Scene width={width}>
-            <Left width={width} onClick={() => handleBook(true)} />
-            <Right width={width} onClick={() => handleBook()} />
+            <Left width={width} onClick={() => prev()} />
+            <Right width={width} onClick={() => next()} />
             <Carousel deg={degree} radius={radius(width, degrees(booksCount))}>
               {mapIndexed(
                 (book, idx) => (
@@ -134,7 +135,7 @@ export function BookSummaries(props) {
                     width={width}
                     ref={itemRef}
                     deg={degrees(booksCount) * idx}
-                    showcase={book.id === bookId}
+                    showcase={book.id === cursor}
                     radius={radius(width, degrees(booksCount))}
                   >
                     <composites.Image
@@ -147,15 +148,12 @@ export function BookSummaries(props) {
               )}
             </Carousel>
           </Scene>
-          <p>bookId{bookId}</p>
-          <p>index{index}</p>
-          <p>degree{degree}</p>
         </Constraint>
       </Flex>
       <Flex column justify="center" align="center">
         {R.map(
           book =>
-            book.id === bookId && (
+            book.id === cursor && (
               <div key={book.id}>
                 <Space y="2">
                   <h3>{book.title}</h3>
