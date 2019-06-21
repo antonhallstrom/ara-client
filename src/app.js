@@ -30,11 +30,16 @@ function App() {
       <views.TopBar />
       <Switch>
         <Route exact path="/" component={views.Biography} />
-        <Route path="/book-summaries" component={views.BookSummaries} />
+        <Route path="/book-summaries" exact component={views.BookSummaries} />
+        <Route
+          path="/book-summaries/book/:bookId"
+          component={views.BookSummary}
+        />
         <Route path="/blog" exact component={views.Blog} />
         <Route path="/blog/post/:id" component={views.Post} />
         <Route path="/login" component={views.Login} />
         <Route path="/artwork" component={views.Artwork} />
+        <Route path="/portfolio" component={views.Portfolio} />
         <PrivateRoute path="/editor" component={views.PostEditor} />
         <Route component={views.NotFound} />
       </Switch>

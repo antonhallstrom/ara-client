@@ -22,8 +22,14 @@ import { NavLink } from '../../components/composites'
 const PAGES = [
   { key: 1, path: '/', label: 'Biography' },
   { key: 2, path: '/blog', label: 'Blog', subPaths: ['post'] },
-  { key: 3, path: '/artwork', label: 'Artwork' },
-  { key: 4, path: '/book-summaries', label: 'Book Summaries' },
+  { key: 3, path: '/portfolio', label: 'Portfolio' },
+  // { key: 4, path: '/artwork', label: 'Artwork' },
+  {
+    key: 5,
+    path: '/book-summaries',
+    label: 'Book Summaries',
+    subPaths: ['book'],
+  },
 ]
 
 function Component() {

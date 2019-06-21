@@ -18,8 +18,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, 'static'),
-        to: path.join(__dirname, 'dist'),
+        from: path.resolve(__dirname, 'static'),
+        to: path.resolve(__dirname, 'dist'),
       },
     ]),
   ],
